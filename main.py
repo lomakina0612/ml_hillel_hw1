@@ -1,5 +1,7 @@
 
 import numpy as np
+import pandas as pd
+
 
 print('\n========== Task 1 ==============\n')
 #todo 1 Створіть масив NumPy із 10 випадкових цілих чисел. Виконайте наступні операції:
@@ -112,4 +114,65 @@ print(arr_1d.shape)
 
 
 print('\n========== pandas ==============\n')
-#todo 
+#todo 1. Створіть DataFrame Pandas із щонайменше 5 рядками та 3 стовпцями. 
+#       Стовпці можуть представляти різні атрибути (наприклад, Ім'я, Вік, Місто).
+# 2. Додайте новий стовпець до DataFrame, який представляє числове значення.
+# 3. Відфільтруйте DataFrame, щоб показати лише рядки, де числове значення більше певного порогу (ви можете визначити поріг).
+# 4. Завантажте набір даних за допомогою Pandas (ви можете використовувати будь-який набір даних у форматі CSV або wine.csv).
+# 5. Відобразіть перші 5 рядків набору даних.
+# 6. Розрахуйте та виведіть загальну статистику для числових стовпців у наборі даних.
+# 7. Знайдіть та виведіть унікальні значення у категорійному стовпці.
+
+
+print('\n========== Pandas Task 1 ==============\n')
+
+data = {
+    'Ім’я': ['Андрій', 'Ольга', 'Ірина', 'Олексій', 'Світлана'],
+    'Вік': [23, 34, 45, 54, 27],
+    'Місто': ['Київ', 'Одеса', 'Львів', 'Харків', 'Дніпро']
+}
+
+
+df = pd.DataFrame(data)
+print(df)
+
+print('\n========== Pandas Task 2 ==============\n')
+df['Зарплата, $'] = [800, 1000, 700, 2500, 1500]
+print("\nDataFrame with new column:\n")
+print(df)
+
+print('\n========== Pandas Task 3 ==============\n')
+threshold = 1000
+filtered_df = df[df['Зарплата, $'] > threshold]
+print(f"\nFiltered DataFrame (Зарплата, $ > {threshold}):\n")
+print(filtered_df)
+
+print('\n========== Pandas Task 4 ==============\n')
+salaries_df = pd.read_csv('ds_salaries.csv')    # from Kaggle
+
+
+print('\n========== Pandas Task 5 ==============\n')
+
+print("\nFirst 5 rows of the wine dataset:")
+print(salaries_df.head(5))
+
+print('\n========== Pandas Task 6 ==============\n')
+
+print("Descriptive statistics for numeric columns:\n")
+print(salaries_df.describe())
+
+
+print('\n========== Pandas Task 7 ==============\n')
+
+job_title = 'job_title'
+print(f"\nUnique values in the '{job_title}' column:")
+print(salaries_df[job_title].unique())
+
+experience_level = 'experience_level'
+print(f"\nUnique values in the '{experience_level}' column:")
+print(salaries_df[experience_level].unique())
+
+salary_currency = 'salary_currency'
+print(f"\nUnique values in the '{salary_currency}' column:")
+print(salaries_df[salary_currency].unique())
+
